@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ButtonFocus</string>
+    <string name="focusable_1">Focusable Button 1</string>
+    <string name="not_focusable">NOT Focusable Button 2</string>
+    <string name="focusable_2">Focusable Button 3</string>
+    <string name="not_focusable_textview">Not Focusable Textview</string>
+    <string name="MessageBtn1">Button 1</string>
+    <string name="MessageBtn2">Button 2</string>
+    <string name="MessageBtn3">Button 3</string>
+</resources>
