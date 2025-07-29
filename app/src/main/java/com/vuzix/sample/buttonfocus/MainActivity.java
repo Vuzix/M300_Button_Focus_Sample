@@ -34,11 +34,15 @@ package com.vuzix.sample.buttonfocus;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends Activity  implements View.OnClickListener {
+    private final static String TAG = "ButtonFocus";
     Button mButton1;
     Button mButton2;
     Button mButton3;
@@ -60,12 +64,35 @@ public class MainActivity extends Activity  implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        String buttonPressed;
         if (view.getId() == R.id.button1) {
-            Toast.makeText(MainActivity.this, getResources().getString(R.string.MessageBtn1), Toast.LENGTH_SHORT).show();
+            buttonPressed = getResources().getString(R.string.MessageBtn1);
         } else if (view.getId() == R.id.button2) {
-            Toast.makeText(MainActivity.this, getResources().getString(R.string.MessageBtn2), Toast.LENGTH_SHORT).show();
+            buttonPressed = getResources().getString(R.string.MessageBtn2);
         } else if (view.getId() == R.id.button3) {
-            Toast.makeText(MainActivity.this, getResources().getString(R.string.MessageBtn3), Toast.LENGTH_SHORT).show();
+            buttonPressed = getResources().getString(R.string.MessageBtn3);
+        } else {
+            buttonPressed = "Unknown";
         }
+        Log.d(TAG, buttonPressed);
+        Toast.makeText(MainActivity.this, buttonPressed, Toast.LENGTH_SHORT).show();
+    }
+
+    // Override this for debugging so we see key presses in the logcat
+    @Override
+    public boolean dispatchTouchEvent (MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_UP) {
+            Log.d(TAG, "Touch event " + event);
+        }
+        return super.dispatchTouchEvent(event);
+    }
+
+    // Override this for debugging so we see key presses in the logcat
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if(event.getAction() == KeyEvent.ACTION_UP) {
+            Log.d(TAG, "User pressed " + KeyEvent.keyCodeToString(event.getKeyCode()));
+        }
+        return super.dispatchKeyEvent (event);
     }
 }
